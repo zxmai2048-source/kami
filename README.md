@@ -12,7 +12,7 @@
 
 Kami (紙, かみ) means paper in Japanese: the surface where a finished idea lands. AI can produce documents better than most humans do manually. The missing piece is not capability but constraint: without a design system, every session drifts into generic gray and inconsistent layouts.
 
-Kami fills that gap: one constraint language, ten templates, simple enough for agents to run reliably, strict enough that every output is something you actually want to ship. English and Chinese are first-class; Japanese works via a best-effort CJK path with visual QA before delivery.
+Kami fills that gap: one constraint language, ten templates, simple enough for agents to run reliably, strict enough that every output is something you actually want to ship. English and Chinese are first-class; Japanese and Korean work via best-effort CJK paths with visual QA before delivery.
 
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
@@ -31,9 +31,9 @@ Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [W
     <br><sub>Agent keynote, 6 slides</sub>
   </td>
   <td align="center" width="25%">
-    <a href="assets/demos/demo-musk-resume.pdf"><img src="assets/demos/demo-musk-resume.png" alt="Elon Musk resume"></a>
-    <br><b>Resume</b> · English
-    <br><sub>Founder CV, 2 pages</sub>
+    <a href="assets/demos/demo-resume-ko.pdf"><img src="assets/demos/demo-resume-ko.png" alt="Korean resume"></a>
+    <br><b>Resume</b> · 한국어
+    <br><sub>개발자 이력서, 2페이지</sub>
   </td>
   <td align="center" width="25%">
     <a href="assets/demos/demo-kaku.pdf"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
@@ -94,13 +94,14 @@ Download [kami.zip](https://github.com/tw93/kami/releases/latest/download/kami.z
 
 The ZIP is lightweight: Chinese fonts load from local checkout first, then jsDelivr CDN. If rendering is off, Claude downloads them on the next run. To update: download the same URL, click "..." on the skill card, choose Replace, upload.
 
-The skill auto-triggers from natural requests, no slash command needed. Optimized for English and Chinese; Japanese supported via a best-effort CJK path with visual QA before delivery.
+The skill auto-triggers from natural requests, no slash command needed. Optimized for English and Chinese; Japanese and Korean are supported via best-effort CJK paths with visual QA before delivery.
 
 Example prompts by language:
 
 - English: `make a one-pager for my startup` / `turn this research into a long doc` / `write a formal letter` / `make a portfolio of my projects` / `build me a resume` / `design a slide deck for my talk` / `make this talk as a Marp deck` / `build a landing page for my app`
 - 中文: `帮我做一份一页纸` / `帮我排版一份长文档` / `帮我写一封正式信件` / `帮我做一份作品集` / `帮我做一份简历` / `帮我做一套演讲幻灯片` / `帮我做一份 Markdown 风格的演示稿` / `帮我做一个产品落地页`
 - 日本語: `スタートアップ向けの一枚資料を作って` / `この調査を長文レポートに整えて` / `正式な依頼文を作って` / `プロジェクト作品集を作って` / `履歴書を作って` / `登壇用スライドを作って` / `Marp で登壇スライドを作って` / `アプリのランディングページを作って`
+- 한국어: `스타트업 원페이저를 만들어줘` / `이 리서치를 장문 문서로 정리해줘` / `정식 레터를 작성해줘` / `프로젝트 포트폴리오를 만들어줘` / `이력서를 만들어줘` / `발표용 슬라이드를 만들어줘` / `Marp 슬라이드로 만들어줘` / `앱 랜딩 페이지를 만들어줘`
 
 **Optional: brand profile**
 
@@ -112,7 +113,7 @@ The file has YAML frontmatter (structured fields: name, role, email, website, Gi
 
 Warm parchment canvas, ink blue as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. Not a UI framework; a constraint system for printed matter. Documents should read as composed pages, not dashboards.
 
-Ten template types: One-Pager, Long Doc, Letter, Portfolio, Resume, Slides, Equity Report, Changelog, and Landing Page in EN and CN. Fourteen inline SVG diagram types included. Slides ship in three rendering paths: WeasyPrint HTML to PDF (default), python-pptx (editable PPTX, on request), and a Marp variant in `assets/templates/marp/` for Markdown-first decks. Code blocks support Pygments-based syntax highlighting when `Pygments` is installed; without it, PDFs still render and code stays monochrome. Kami picks the right variant based on the language you write in.
+Ten template types: One-Pager, Long Doc, Letter, Portfolio, Resume, Slides, Equity Report, Changelog, and Landing Page in EN, CN, and KO. Fourteen inline SVG diagram types included. Slides ship in three rendering paths: WeasyPrint HTML to PDF (default), python-pptx (editable PPTX, on request), and a Marp variant in `assets/templates/marp/` for Markdown-first decks. Code blocks support Pygments-based syntax highlighting when `Pygments` is installed; without it, PDFs still render and code stays monochrome. Kami picks the right variant based on the language you write in.
 
 | Element | Rule |
 |---|---|
@@ -124,7 +125,7 @@ Ten template types: One-Pager, Long Doc, Letter, Portfolio, Resume, Slides, Equi
 | Shadows | Ring or whisper only, no hard drop shadows |
 | Tags | Solid hex backgrounds only. `rgba()` triggers a WeasyPrint double-rectangle bug |
 
-**Fonts**: Each language uses a single serif font for the entire page. Chinese: TsangerJinKai02. Japanese: YuMincho. English: Charter. TsangerJinKai is free for personal use, commercial use requires a license from [tsanger.cn](https://tsanger.cn). All other fonts are system-bundled.
+**Fonts**: Each language uses a single serif font for the entire page. Chinese: TsangerJinKai02. Japanese: YuMincho. Korean: Source Han Serif K. English: Charter. TsangerJinKai is free for personal use, commercial use requires a license from [tsanger.cn](https://tsanger.cn). Source Han Serif K is OFL-licensed. All other fonts are system-bundled.
 
 Full spec: [design.md](references/design.md). Cheatsheet: [CHEATSHEET.md](CHEATSHEET.md).
 
@@ -174,4 +175,4 @@ Later I needed to present "The Agent You Don't Know: Principles, Architecture an
 
 MIT License for kami code and templates. Feel free to use and contribute.
 
-**Fonts**: TsangerJinKai02 (Chinese) is free for personal use only; commercial use requires a license from [tsanger.cn](https://tsanger.cn). Charter (English), YuMincho (Japanese), and CJK fallbacks are system-bundled or open-licensed.
+**Fonts**: TsangerJinKai02 (Chinese) is free for personal use only; commercial use requires a license from [tsanger.cn](https://tsanger.cn). Charter (English), YuMincho (Japanese), Source Han Serif K (Korean, OFL), and CJK fallbacks are system-bundled or open-licensed.
