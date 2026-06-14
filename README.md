@@ -16,32 +16,17 @@ Kami fills that gap: one constraint language, nine templates, simple enough for 
 
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
-## See it
+## Examples
 
-<table>
-<tr>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-tesla.pdf"><img src="assets/demos/demo-tesla.png" alt="Tesla equity report"></a>
-    <br><b>Equity Report</b> · 中文
-    <br><sub>Tesla Q1 2026 财报点评</sub>
-  </td>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-agent-slides.pdf"><img src="assets/demos/demo-agent-slides.png" alt="Agent keynote slides" /></a>
-    <br><b>Slides</b> · English
-    <br><sub>Agent keynote, 6 slides</sub>
-  </td>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-resume-ko.pdf"><img src="assets/demos/demo-resume-ko.png" alt="Korean resume"></a>
-    <br><b>Resume</b> · 한국어
-    <br><sub>개발자 이력서, 2페이지</sub>
-  </td>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-kaku.pdf"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
-    <br><b>Portfolio</b> · 日本語
-    <br><sub>Kaku ターミナル作品集 · 7 ページ</sub>
-  </td>
-</tr>
-</table>
+Real PDFs, one constraint set, each in the language it was written for. Click any to open.
+
+| Template | Language | Demo |
+| :-- | :-- | :-- |
+| Resume | English | [Elon Musk · 2 pages](assets/demos/demo-musk-resume.pdf) |
+| Resume | 한국어 | [개발자 이력서 · 2페이지](assets/demos/demo-resume-ko.pdf) |
+| Equity Report | 中文 | [Tesla Q1 2026 财报点评](assets/demos/demo-tesla.pdf) |
+| Slides | English | [Agent keynote · 6 slides](assets/demos/demo-agent-slides.pdf) |
+| Portfolio | 日本語 | [Kaku ターミナル作品集 · 7 ページ](assets/demos/demo-kaku.pdf) |
 
 ## Landing Pages
 
