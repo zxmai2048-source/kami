@@ -113,9 +113,11 @@ def test_dist_package_contents() -> None:
 
     forbidden = sorted(
         name for name in names
-        if name.startswith("assets/showcase/") or name in PACKAGE_FORBIDDEN_EXACT
+        if name.startswith("assets/showcase/")
+        or name.startswith("assets/demos/")
+        or name in PACKAGE_FORBIDDEN_EXACT
     )
-    check("dist/kami.zip excludes showcase screenshots and large bundled fonts",
+    check("dist/kami.zip excludes showcase screenshots, demos, and large bundled fonts",
           not forbidden,
           f"forbidden entries: {', '.join(forbidden)}")
     check("dist/kami.zip keeps logo.svg",

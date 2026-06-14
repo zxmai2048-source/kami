@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT="${1:-"$ROOT/dist/kami.zip"}"
 PACKAGE_MAX_BYTES="${KAMI_PACKAGE_MAX_BYTES:-6000000}"
-PACKAGE_FORBIDDEN_RE='^(assets/showcase/|assets/images/[123]\.png$|assets/fonts/TsangerJinKai02-W0[45]\.ttf$|assets/fonts/SourceHanSerifKR-(Regular|Medium)\.otf$)'
+PACKAGE_FORBIDDEN_RE='^(assets/showcase/|assets/demos/|assets/images/[123]\.png$|assets/fonts/TsangerJinKai02-W0[45]\.ttf$|assets/fonts/SourceHanSerifKR-(Regular|Medium)\.otf$)'
 PACKAGE_REQUIRED_ENTRY='assets/images/logo.svg'
 
 mkdir -p "$(dirname "$OUT")"
@@ -23,6 +23,7 @@ awk '
   /^assets\/examples\// { next }
   /^assets\/illustrations\// { next }
   /^assets\/showcase\// { next }
+  /^assets\/demos\// { next }
   /^dist\// { next }
   /^\.vercel\// { next }
   /(^|\/)__pycache__\// { next }
