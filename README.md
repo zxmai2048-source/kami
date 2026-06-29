@@ -133,7 +133,7 @@ Warm parchment canvas `#f5f4ed`, ink blue `#1B365D` as the sole accent, serif ca
 - **Diagrams.** Seventeen inline SVG types. Sequence, class, and ER can be authored from Mermaid text: [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) renders the SVG and `scripts/mermaid_normalize.py` re-themes it to the Kami palette and makes it WeasyPrint-safe, no Node bundled.
 - **Slides.** Three rendering paths: WeasyPrint HTML to PDF by default, python-pptx for editable PPTX on request, and a Marp variant in `assets/templates/marp/` for Markdown-first decks.
 - **Code.** Pygments-based syntax highlighting when `Pygments` is installed; without it, PDFs still render and code stays monochrome.
-- **Print.** Parchment is the default canvas; an opt-in white-paper variant flips any document to a white background for home or office printers, sinking the warmth into cards and tables so the hierarchy still reads. See [production.md](references/production.md).
+- **Print.** Parchment is the default canvas; an opt-in white-paper variant flips any document to a white background for home or office printers, sinking the warmth into cards and tables so the hierarchy still reads. The [one-page Kami intro](assets/demos/demo-kami-print.pdf) (Chinese) is rendered with this variant; recipe in [production.md](references/production.md).
 
 Kami picks the right variant based on the language you write in.
 
