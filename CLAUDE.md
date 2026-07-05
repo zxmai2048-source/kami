@@ -24,6 +24,8 @@ python3 scripts/mermaid_normalize.py raw.svg -o clean.svg  # beautiful-mermaid S
 
 ## 项目独有硬规则
 
+与 `AGENTS.md` Working Rules 重叠或冲突时，以 `AGENTS.md` 为准（它是跨 runtime 的单一 source of truth）；本节只是高频速查。
+
 - 改 style 时同步更新 `references/design.md` 和模板 tokens，不要只改单点。
 - 加新模板：从最近的模板复制，对齐 `references/design.md`，加 demo 覆盖。
 - 不要在 docs / template 注释 / 脚本输出里用图形 emoji。脚本状态用 `OK:` / `ERROR:`。
