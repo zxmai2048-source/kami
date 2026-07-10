@@ -39,4 +39,6 @@ python3 scripts/mermaid_normalize.py raw.svg -o clean.svg  # beautiful-mermaid S
 - 改 Codex / Claude 插件 marketplace、版本或安装路径后，不只看 metadata；跑 `python3 scripts/build_metadata.py --check`，必要时用隔离 `CODEX_HOME=/tmp/...` 或 `HOME=/tmp/...` 的 Claude Code 安装路径做真实冒烟。
 - 刷新 release 包或 latest 资源前后，不只看页面大小；下载 `kami.zip`，对比 ZIP entry 列表和每个 entry 的 SHA-256。
 - 不提交一次性的 review 报告或诊断快照；只把稳定规则沉淀到 `AGENTS.md`、`SKILL.md` 或 `references/`。
+- 写 release notes 前先 `gh release view` 上一个正式 release，把它当格式硬模板，不凭记忆重建结构；发布后回读 reaction 确认六个正向表情（+1 / laugh / heart / hooray / rocket / eyes）都在，绝不加 -1 / confused。
+- 排版产物（PDF / README / 官网页）交付前扫临界换行：`--check-orphans` / `--check-density` 管 PDF 孤行和稀疏页，人工扫"差一个词就换行 / 未撑满就提前换行"和非 PDF 面；发现一处即全文档同类全修，优先改内容长度，不动字号间距。
 - Mermaid 图：raw beautiful-mermaid SVG 不能直接进 PDF 模板，先过 `scripts/mermaid_normalize.py`（纯 Python，会重上 Kami 色 + 解析 `color-mix()`；`--check` 会拦未归一化的 `color-mix(` / `foreignObject` / web font）。Kami 不打包 Node：要从 Mermaid 文本出新图，在任意 beautiful-mermaid（如 agents.craft.do/mermaid）里生成 SVG 再跑 normalizer。`xychart` 只走浏览器，PDF 用现有手绘图。细节见 `references/mermaid.md`。

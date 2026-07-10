@@ -43,6 +43,8 @@ Kami is a document-generation skill and template system. It ships editorial HTML
 - `scripts/shared.py` - shared constants and the canonical `HTML_TEMPLATES` registry used by the build scripts.
 - `scripts/ensure-fonts.sh` - verified font recovery helper (portable across bash 3.2+).
 - `scripts/package-skill.sh` - package builder for the release archive.
+- `scripts/site_facts.py` - public-site fact drift checks (install commands, version, template and diagram counts across `index*.html`, README, `llms.txt`); wired into `build.py --check`.
+- `scripts/check-update.sh` - quiet daily update check invoked from `SKILL.md`; read-only VERSION compare, silent on any failure.
 - `scripts/build_metadata.py` - codegen for Claude Code / Codex marketplace metadata and plugin mirror files. Run after changing `SKILL.md`, `CHEATSHEET.md`, `VERSION`, `references/`, `scripts/`, or shipped lightweight assets.
 - `scripts/draft-release-notes.py` - bilingual release notes scaffold from `git log`.
 - `scripts/tests/test_build.py` - zero-dependency test suite for build and shared helpers.
@@ -185,8 +187,15 @@ magick /tmp/stacked.png -gravity Center -background '#f5f4ed' -extent 1241x1754 
 - Claude Code / Codex marketplace changes: run `python3 scripts/build_metadata.py --check` and confirm `plugins/kami/.claude-plugin/plugin.json`, `plugins/kami/.codex-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and `.agents/plugins/marketplace.json` stay generated. If install behavior, version selection, or source path changed, also run the matching isolated install smoke.
 - Documentation-only changes: check links and references.
 
+## Critical Line-Break Scan
+
+- Every user-visible typeset deliverable (rendered PDFs, README, public site pages) gets a page-by-page scan for three critical wrap states before handoff: a trailing line of only 1-2 words (orphan), a line one word away from wrapping, and a line that wraps early without filling its container.
+- Split the work between script and eye: `python3 scripts/build.py --check-orphans <pdf>` and `--check-density <pdf>` deterministically catch PDF orphan trailing lines and pages with too much trailing whitespace; the manual pass covers what they cannot see, near-wrap and premature-wrap states inside a page, plus non-PDF surfaces (README, `index*.html` at 375px / 1280px screenshots).
+- One hit means a whole-document sweep for the same class of issue, not a single-spot fix. Fix by adjusting content length (add or cut words) first; changing font size or spacing to dodge a wrap is the last resort and must re-pass `python3 scripts/build.py --check` and the page-count contract afterwards.
+
 ## Release Notes
 
+- Before drafting notes, read the previous published release and treat it as the hard format template: `gh release view $(gh release list -R tw93/Kami --limit 1 --json tagName --jq '.[0].tagName') -R tw93/Kami`. Mirror its exact structure (centered logo block, `### Changelog`, `### 更新日志`, closing tagline blockquote); do not rebuild the shape from memory.
 - For public releases, keep notes concise and bilingual. Use one-to-one English and Chinese changelog items, 5 to 8 items, one sentence each.
 - Generate the scaffold with `python3 scripts/draft-release-notes.py V<prev>..V<new> --version V<new> --title "<Codename>"`, then regroup the raw commit list into 5 to 8 product-themed bullets and translate each to Chinese. Do not paste raw commit subjects.
 - Match the established shape: title is `V<x.y.z> <Two-Word Codename>` (e.g. `V1.7.2 Cleaner Resumes`), body is the centered logo block + `### Changelog` (English numbered list) + `### 更新日志` (Chinese numbered list) + the closing tagline line.
@@ -200,6 +209,7 @@ magick /tmp/stacked.png -gravity Center -background '#f5f4ed' -extent 1241x1754 
 - Create a new version tag only when the maintainer explicitly wants a versioned release. Tag the commit that already contains the final refreshed `dist/kami.zip`; do not tag a source-only commit and refresh the archive afterward.
 - On tag push, `.github/workflows/release.yml` builds and attaches `dist/kami.zip`, creates the release if missing, and adds the house-style reactions (`+1 eyes heart hooray laugh rocket`, one each). Do not `gh release create` by hand; let CI create the placeholder, then set the real title and notes with `gh release edit V<x> --title "V<x> <Codename>" --notes-file <file>`.
 - If reactions are ever missing (older release, CI skipped), add them manually: `rid=$(gh api repos/tw93/Kami/releases/tags/V<x> --jq .id); for r in +1 eyes heart hooray laugh rocket; do gh api -X POST repos/tw93/Kami/releases/$rid/reactions -f content="$r"; done`.
+- Reactions are part of publish completion, not optional polish. After the release is live, read back `gh api repos/tw93/Kami/releases/$rid/reactions --jq '.[].content'` and confirm all six positive reactions (`+1`, `laugh`, `heart`, `hooray`, `rocket`, `eyes`) are present. Never add `-1` or `confused`; a negative reaction on our own release reads as self-deprecation.
 
 ## Fonts
 
